@@ -1,0 +1,32 @@
+{
+  "compilerOptions": {
+    "target": "es6",
+    "baseUrl": "src",
+    "paths": {
+      "@pages": [
+        "./pages"
+      ],
+      "@components": [
+        "./shared/components"
+      ],
+      "@configs": [
+        "./shared/configs"
+      ],
+      "@constants": [
+        "./shared/configs/constants"
+      ],
+      "@icons": [
+        "./assets/icons"
+      ],
+      "@images": [
+        "./assets/images"
+      ],
+      "@utils": [
+        "./shared/utils"
+      ],
+    },
+  },
+  "exclude": [
+    "node_modules"
+  ]
+}

@@ -1,0 +1,110 @@
+@mixin push--auto {
+  margin: {
+    left: auto;
+    right: auto;
+  }
+}
+
+@mixin to-flex($direction: row, $wrap: nowrap, $justify: unset, $align: unset) {
+  display: flex;
+  flex-wrap: $wrap;
+  flex-direction: $direction;
+  justify-content: $justify;
+  align-items: $align;
+}
+
+@mixin pseudo($display: block, $pos: absolute, $content: "") {
+  content: $content;
+  display: $display;
+  position: $pos;
+}
+
+@mixin input-placeholder {
+  &.placeholder {
+    @content;
+  }
+  &:-moz-placeholder {
+    @content;
+  }
+  &::-moz-placeholder {
+    @content;
+  }
+  &:-ms-input-placeholder {
+    @content;
+  }
+  &::-webkit-input-placeholder {
+    @content;
+  }
+}
+
+@mixin mq($width, $type: min) {
+  @if map_has_key(bk.$breakpoints, $width) {
+    $width: map_get(bk.$breakpoints, $width);
+    @if $type == max {
+      $width: $width - 1px;
+    }
+    @media only screen and (#{$type}-width: $width) {
+      @content;
+    }
+  }
+}
+
+@function z($name) {
+  @if index($z-indexes, $name) {
+    @return (length($z-indexes) - index($z-indexes, $name)) + 1;
+  } @else {
+    @warn 'There is no item "#{$name}" in this list; choose one of: #{$z-indexes}';
+    @return null;
+  }
+}
+
+@mixin hardware($backface: true, $perspective: 1000) {
+  @if $backface {
+    backface-visibility: hidden;
+  }
+  perspective: $perspective;
+}
+
+@mixin truncate($truncation-boundary) {
+  max-width: $truncation-boundary;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+@mixin unselectable {
+  -webkit-touch-callout: none;
+  user-select: none;
+}
+
+@mixin font-size($sizes) {
+  @each $breakpoint, $size in $sizes {
+    @if $breakpoint == base {
+      font-size: $size;
+    } @else {
+      @include mq($breakpoint) {
+        font-size: $size;
+      }
+    }
+  }
+}
+
+@mixin selection {
+  ::-moz-selection {
+    @content;
+  }
+  ::selection {
+    @content;
+  }
+}
+@mixin linear-gradient($color1, $color2, $text: false, $angle: 90deg) {
+  background-image: -moz-linear-gradient($angle, $color1 0%, $color2 100%);
+  background-image: -webkit-linear-gradient($angle, $color1 0%, $color2 100%);
+  background-image: linear-gradient($angle, $color1 0%, $color2 100%);
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr=$color1,endColorstr=$color2,GradientType=1);
+
+  @if $text {
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+}
