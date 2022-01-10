@@ -40,6 +40,10 @@
                         "./src/pages"
                     ],
                     [
+                        "@layouts",
+                        "./src/shared/layouts"
+                    ],
+                    [
                         "@components",
                         "./src/shared/components"
                     ],
@@ -62,6 +66,10 @@
                     [
                         "@utils",
                         "./src/shared/utils"
+                    ],
+                    [
+                        "@sass",
+                        "./src/assets/sass"
                     ]
                 ]
             },
@@ -80,6 +88,13 @@
         }
     },
     "rules": {
+        "react/prop-types": "off",
+        "max-len": [
+            "error",
+            {
+                "code": 80
+            }
+        ],
         "import/no-mutable-exports": 1,
         "vars-on-top": "off",
         "react/function-component-definition": [

@@ -3,7 +3,7 @@ const WEBPACK_ALIAS = require("../.config/webpack-alias");
 
 const ALIAS = {};
 Object.entries(WEBPACK_ALIAS).forEach(([key, value]) => {
-  ALIAS[key] = path.resolve(__dirname, "..", value);
+  ALIAS[key] = path.resolve(__dirname, "..", "src", value);
 });
 
 module.exports = ({ config }) => {

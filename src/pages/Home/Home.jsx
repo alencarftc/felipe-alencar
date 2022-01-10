@@ -2,8 +2,8 @@ import React from "react";
 
 import "./Home.scss";
 
-function Home() {
-  return <section>a simple homepage</section>;
-}
+const Home = () => (
+  <div />
+);
 
 export default Home;

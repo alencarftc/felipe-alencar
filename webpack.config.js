@@ -4,18 +4,18 @@ const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const UglifyJsPlugin = require("uglifyjs-webpack-plugin");
 const OptimizeCSSAssetsPlugin = require("optimize-css-assets-webpack-plugin");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
+const ESLintPlugin = require("eslint-webpack-plugin");
 const WEBPACK_ALIAS = require("./.config/webpack-alias");
 
 const ALIAS = {};
 Object.entries(WEBPACK_ALIAS).forEach(([key, value]) => {
-  ALIAS[key] = path.resolve(__dirname, value);
+  ALIAS[key] = path.resolve(__dirname, "src", value);
 });
 
 module.exports = (env) => {
   const isProduction = env === "production";
   return {
     mode: "development",
-    context: __dirname,
     entry: path.resolve(__dirname, "src", "index.jsx"),
     devtool: isProduction ? "source-map" : "inline-source-map",
     output: {
@@ -33,8 +33,9 @@ module.exports = (env) => {
       hot: "only",
     },
     resolve: {
-      extensions: [".js", ".jsx"],
+      modules: [path.resolve(__dirname, "src"), "node_modules"],
       alias: WEBPACK_ALIAS,
+      extensions: ["", ".js", ".jsx"],
     },
     optimization: {
       minimize: true,
@@ -85,7 +86,6 @@ module.exports = (env) => {
                 ],
               },
             },
-            "eslint-loader",
           ],
         },
         {
@@ -138,6 +138,7 @@ module.exports = (env) => {
       ],
     },
     plugins: [
+      new ESLintPlugin(),
       new HtmlWebpackPlugin({
         inject: true,
         hash: true,

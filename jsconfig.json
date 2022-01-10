@@ -2,30 +2,41 @@
   "compilerOptions": {
     "target": "es6",
     "baseUrl": "src",
+    "jsx": "react",
+    "moduleResolution": "node",
     "paths": {
-      "@pages": [
-        "./pages"
+      "@pages/*": [
+        "./pages/*"
       ],
-      "@components": [
-        "./shared/components"
+      "@layouts/*": [
+        "./shared/layouts/*"
       ],
-      "@configs": [
-        "./shared/configs"
+      "@components/*": [
+        "./shared/components/*"
       ],
-      "@constants": [
-        "./shared/configs/constants"
+      "@configs/*": [
+        "./shared/configs/*"
       ],
-      "@icons": [
-        "./assets/icons"
+      "@constants/*": [
+        "./shared/configs/constants/*"
       ],
-      "@images": [
-        "./assets/images"
+      "@icons/*": [
+        "./assets/icons/*"
       ],
-      "@utils": [
-        "./shared/utils"
+      "@images/*": [
+        "./assets/images/*"
       ],
+      "@utils/*": [
+        "./shared/utils/*"
+      ],
+      "@sass/*": [
+        "./assets/sass/*"
+      ]
     },
   },
+  "include": [
+    "src/**/*"
+  ],
   "exclude": [
     "node_modules"
   ]

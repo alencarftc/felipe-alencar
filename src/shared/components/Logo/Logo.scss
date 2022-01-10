@@ -1,0 +1,55 @@
+.logo {
+  font-size: 14px;
+  transition: all 350ms ease;
+
+  @include mq("sm", max) {
+    font-size: 10px;
+  }
+
+  &.logo-small {
+    font-size: 8px !important;
+  }
+}
+
+.logo {
+  display: flex;
+  max-width: max-content;
+  margin: 0 auto;
+
+  @include mq("sm", max) {
+    flex-wrap: wrap;
+    justify-content: center;
+
+    img {
+      margin-right: 0;
+    }
+  }
+
+  img {
+    margin-right: 30px;
+    display: block;
+    width: 100%;
+    max-width: 8em;
+    user-select: none;
+    pointer-events: none;
+    user-drag: none;
+  }
+
+  .logo-text {
+    h1 {
+      white-space: nowrap;
+      font-size: 4.5em;
+      color: $secondary-color;
+      margin: 0;
+      font-weight: 400;
+      line-height: 1.25em;
+    }
+    span {
+      color: $primary-color;
+      letter-spacing: 0.17em;
+      font-size: 1.75em;
+      text-transform: uppercase;
+      font-weight: bold;
+    }
+  }
+}

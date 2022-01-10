@@ -1,0 +1,31 @@
+// section {
+//   display: flex;
+//   justify-content: center;
+//   flex-flow: row wrap;
+// }
+
+.experience {
+  font-size: 14px;
+  padding: 0 5%;
+  margin: 30px 0;
+
+  .experience-title {
+    font-size: 1.5em;
+    font-weight: bold;
+    color: $primary-color;
+
+    .experience-title--highlight {
+      color: $secondary-color;
+    }
+  }
+
+  .experience-period {
+    display: inline-block;
+    color: #999;
+    font-size: 1.175em;
+    margin: 4px 0 8px;
+  }
+  .experience-description {
+    font-size: 1.5em;
+  }
+}

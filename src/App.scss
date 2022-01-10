@@ -1,3 +1,104 @@
+#app,
+body {
+  min-height: 100vh;
+  background: inherit;
+}
 body {
   background: #eee;
+}
+
+.app-inner {
+  min-height: inherit;
+  background: inherit;
+
+  .header-container {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: top 350ms ease, background 350ms ease, height 350ms ease;
+    z-index: 1;
+    background: inherit;
+  }
+  .header-on-top {
+    top: 15%;
+    height: max-content;
+  }
+  section.content {
+    padding-top: 180px;
+    opacity: 0;
+  }
+}
+main.app-inner {
+  &.content-visible section.content {
+    opacity: 1;
+  }
+  &.content-first-appear {
+    .header-container {
+      .navbar-container {
+        animation: delayedFadeOut 4400ms;
+      }
+
+      .logo-text {
+        animation: fadeLeft 1250ms;
+        animation-delay: 1500ms;
+      }
+
+      .logo {
+        transition: unset;
+        animation: rotatingFallLogo 4000ms;
+
+        img {
+          animation: rotateFaster 2200ms cubic-bezier(0.175, 1, 0.35, 1);
+        }
+      }
+    }
+  }
+  &.content-fade-out section.content {
+    animation: fadeOut 250ms;
+    opacity: 1;
+  }
+  &.content-fade-in section.content {
+    animation: fadeIn 250ms;
+    opacity: 0;
+  }
+}
+
+@keyframes delayedFadeOut {
+  0% {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  50% {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0px);
+  }
+}
+
+@keyframes rotatingFallLogo {
+  0% {
+    position: absolute;
+    top: -12.5%;
+    left: calc(50% - 51px);
+    overflow: hidden;
+    max-width: 60px;
+  }
+  35% {
+    overflow: hidden;
+    max-width: 100px;
+    top: 37.5%;
+  }
+  100% {
+    max-width: 1000px;
+    left: calc(50% - 51px);
+  }
 }
