@@ -34,7 +34,10 @@ module.exports = (env) => {
     },
     resolve: {
       modules: [path.resolve(__dirname, "src"), "node_modules"],
-      alias: WEBPACK_ALIAS,
+      alias: {
+        ...WEBPACK_ALIAS,
+        process: "process/browser",
+      },
       extensions: ["", ".js", ".jsx"],
     },
     optimization: {
@@ -150,10 +153,18 @@ module.exports = (env) => {
         chunkFilename: "[id].css",
       }),
       new webpack.HotModuleReplacementPlugin(),
+      new webpack.ProvidePlugin({
+        process: "process/browser",
+      }),
       new webpack.DefinePlugin({
-        "process.env.NODE_ENV": JSON.stringify(
-          process.env.NODE_ENV || "development",
-        ),
+        "process.env": {
+          VERSION: JSON.stringify(
+            process.env.npm_package_version,
+          ),
+          NODE_ENV: JSON.stringify(
+            process.env.NODE_ENV || "development",
+          ),
+        },
       }),
     ],
   };

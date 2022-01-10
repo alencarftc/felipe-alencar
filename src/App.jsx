@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import {
-  BrowserRouter, Route, Routes,
+  HashRouter, Route, Routes,
 } from "react-router-dom";
 import Home from "@pages/Home";
 import About from "@pages/About";
@@ -11,7 +11,7 @@ import Experience from "@pages/Experience";
 import Portfolio from "@pages/Portfolio";
 import Contact from "@pages/Contact";
 
-const App = () => {
+const App = ({ version }) => {
   const [isHome, setIsHome] = useState(false);
   const [animation, setAnimation] = useState("first-appear");
 
@@ -21,7 +21,7 @@ const App = () => {
 
   return (
     <main className={`app-inner ${animation && `content-${animation}`} `}>
-      <BrowserRouter>
+      <HashRouter>
         <div className={`header-container ${!isHome ? "header-on-top" : ""} `}>
           <Header
             onItemClick={(shouldAnimate) => {
@@ -44,7 +44,12 @@ const App = () => {
             <Route exact path="/contact" element={<Contact />} />
           </Routes>
         </section>
-      </BrowserRouter>
+        <footer>
+          <div className="version">
+            {version}
+          </div>
+        </footer>
+      </HashRouter>
     </main>
   );
 };
